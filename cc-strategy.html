@@ -228,7 +228,7 @@
     .map-card small {
       display: block;
       margin-top: 3px;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 400;
     }
     .map-arrow {
@@ -429,7 +429,7 @@
         <h2>はじめに</h2>
       </div>
       <div class="plain-lines">
-        <p><strong>課題:</strong> 委託工数の適正化が急務。本来の目的（人員不足・専門性の補完）の範囲を超え、生成AIで代替可能な作業まで委託に流れている。</p>
+        <p><strong>課題:</strong> 委託工数の適正化が急務。本来の目的（人員不足・専門性の補完）の範囲を超え、生成AIで代替可能な作業まで委託へ流れている。</p>
         <p><strong>方針:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替可能な作業は社員+CC（Claude Code）を標準経路とし、委託工数を真に必要な領域へ再配置する。</p>
       </div>
       <div class="grid2">
@@ -439,7 +439,7 @@
         </div>
         <div class="box">
           <div class="box-h box-h-amber">委託に残す領域</div>
-          <p>ユーザー調整、物理系作業、複雑な障害対応、高度な専門判断が必要な業務、短期ピーク対応。リスクと負荷を吸収する役割に絞る。</p>
+          <p>ユーザー調整、物理系作業、複雑な障害対応、専門判断が必要な業務、短期ピーク対応。リスクと負荷を吸収する役割に絞る。</p>
         </div>
       </div>
     </section>
@@ -449,7 +449,7 @@
         <span class="sec-num">01</span>
         <h2>現状の問題（委託の使い方）</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> 問題は量ではなく使い方。委託リーダー層に依頼・確認が集中し、工数も品質も不安定になっている。</div>
+      <div class="slide-msg"><strong>結論:</strong> 問題は量ではなく使い方。委託リーダー層に依頼・確認が集中し、工数が膨らみ、品質も安定しない状態が続いている。</div>
 
       <h3>現状の運用フロー</h3>
       <div class="map">
@@ -466,8 +466,7 @@
       <ul class="benefits neg">
         <li><strong>委託範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らみやすい</span></li>
         <li><strong>品質の変動</strong><span> 担当者の入れ替わりで成果物の粒度と判断基準が変わりやすい</span></li>
-        <li><strong>管理負荷の増大</strong><span> 説明・レビュー工数が委託リーダー層に集中し、対応が詰まりやすい</span></li>
-        <li><strong>共有コストの増加</strong><span> 委託会社内での情報共有・引き継ぎコストが増大し、対応品質が不安定になりやすい</span></li>
+        <li><strong>管理・共有コストの増大</strong><span> 説明・レビュー・引き継ぎの工数がリーダー層に集中し、対応が詰まりやすい</span></li>
       </ul>
     </section>
 
@@ -528,7 +527,7 @@
       <div class="grid2">
         <div class="box">
           <div class="box-h box-h-amber">1. 使いどころを整理する</div>
-          <p>定型タスクを棚卸しして、件数・工数・手戻り回数で評価する。対象を「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
+          <p>定型タスクを棚卸しし、件数・工数・手戻り回数で評価する。対象を「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
         </div>
         <div class="box">
           <div class="box-h box-h-amber">2. 安全に使う土台を整備する</div>
@@ -539,8 +538,8 @@
       <div class="panel">
         <h4>実務での進め方</h4>
         <ol>
-          <li><strong>Step 1:</strong> 候補業務を棚卸しして、件数・工数・手戻りを記録する（セクション05の立ち上げ計画と並行して進める）。</li>
-          <li><strong>Step 2:</strong> 利用ルールを定義し、入力禁止情報と承認条件を固定する。</li>
+          <li><strong>Step 1:</strong> 上記の3分類（文書作成・一次調査・レビュー補助）に従い候補業務を整理し、件数・工数・手戻り回数を記録する。</li>
+          <li><strong>Step 2:</strong> 利用ルールを定義し、入力禁止情報と承認条件を明確にする。</li>
           <li><strong>Step 3:</strong> 上位3業務を選定し、CC用テンプレートを作成する。</li>
           <li><strong>Step 4:</strong> 実案件で運用し、毎週ケース追記とルール更新を行う。</li>
         </ol>
