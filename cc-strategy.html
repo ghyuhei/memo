@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>思考整理メモ</title>
+  <title>Claude Code 活用による外部委託最適化（思考整理メモ）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -398,7 +398,7 @@
 </head>
 <body>
   <header class="hdr">
-    <h1>思考整理メモ</h1>
+    <h1>Claude Code 活用による外部委託最適化</h1>
   </header>
 
   <nav>
@@ -426,7 +426,7 @@
       <div class="grid2">
         <div class="box">
           <div class="box-h box-h-ok">内製へ戻す領域（社員+CC）</div>
-          <p>定型文書作成・一次調査・依頼文整形・レビュー観点整理・事例化など、型化できる業務を社員+CCへ移す。設計・実装も標準化できる範囲で対象に含める。</p>
+          <p>定型文書作成・一次調査・依頼文整形・レビュー観点整理・事例化など、型化できる業務を社員+CCに移す。設計・実装も標準化できる範囲で対象に含める。</p>
         </div>
         <div class="box">
           <div class="box-h box-h-amber">委託に残す領域</div>
@@ -437,7 +437,7 @@
         <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
         <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
         <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
-        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、次回以降に再利用する</span></li>
+        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、次回以降に再利用しやすくなる</span></li>
       </ul>
     </section>
 
@@ -461,10 +461,10 @@
       </div>
 
       <ul class="benefits neg">
-        <li><strong>委託範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らんでいる</span></li>
+        <li><strong>委託範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らみやすい</span></li>
         <li><strong>品質の変動</strong><span> 担当者の入れ替わりで成果物の粒度と判断基準が変わりやすい</span></li>
         <li><strong>管理負荷の増大</strong><span> 説明・レビュー工数が委託リーダー層に集中し、対応が詰まりやすい</span></li>
-        <li><strong>共有コストの増加</strong><span> 委託会社内での情報共有・引き継ぎコストが増大し、対応品質がさらに不安定になる</span></li>
+        <li><strong>共有コストの増加</strong><span> 委託会社内での情報共有・引き継ぎコストが増大し、対応品質がさらに不安定になりやすい</span></li>
       </ul>
     </section>
 
@@ -483,7 +483,7 @@
           <div class="map-arrow">→</div>
           <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card mid">委託リーダー層（L/SL）<small>難案件のみ・説明コスト削減</small></div>
+          <div class="map-card mid">委託リーダー層（L/SL）<small>難案件のみ担当（説明コスト削減）</small></div>
           <div class="map-arrow">→</div>
           <div class="map-card v">委託メンバー<small>作業を実施</small></div>
         </div>
@@ -503,10 +503,10 @@
       </div>
       <div class="slide-msg"><strong>結論:</strong> 生成AIで代替可能な作業は社員+CCへ寄せ、委託工数を必要領域へ集中させる。</div>
 
-      <p class="note">運用フローは機密性・難易度・作業種別の判断基準で2種類に分かれる。</p>
+      <p class="note">運用フローは、機密性・難易度・作業種別の判断基準により2つに分かれる。</p>
       <h3>フローA（委託なし）</h3>
       <div class="map">
-        <div class="map-lbl">CCで完結するケース（定型・低リスク）</div>
+        <div class="map-lbl">社員+CCで完結するケース（定型・低リスク）</div>
         <div class="map-row">
           <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
           <div class="map-arrow">→</div>
@@ -539,7 +539,7 @@
           </div>
         </div>
       </div>
-      <p class="note">共通処理: フローA・B ともに、やり取り・実行結果・修正内容を <code>cases/</code> に記録し、次回以降に再利用する。</p>
+      <p class="note">共通処理: フローA・Bともに、やり取り・実行結果・修正内容を<code>cases/</code>に記録し、次回以降に再利用する。</p>
 
     </section>
 
@@ -564,9 +564,9 @@
       <div class="panel">
         <h4>実務での進め方</h4>
         <ol>
-          <li><strong>Step 1:</strong> 候補業務を棚卸しし、件数・工数・手戻りを記録する（S6のロードマップと並行して進める）。</li>
+          <li><strong>Step 1:</strong> 候補業務を棚卸しし、件数・工数・手戻りを記録する（セクション06のロードマップと並行して進める）。</li>
           <li><strong>Step 2:</strong> 上位3業務を選定し、CC用テンプレートを作成する。</li>
-          <li><strong>Step 3:</strong> セキュリティルールを定義し、入力禁止情報と承認条件を固定する。</li>
+          <li><strong>Step 3:</strong> 利用ルールを定義し、入力禁止情報と承認条件を固定する。</li>
           <li><strong>Step 4:</strong> 実案件で運用し、毎週ケース追記とルール更新を行う。</li>
         </ol>
       </div>
@@ -577,7 +577,7 @@
         <span class="sec-num">05</span>
         <h2>社員側のCC利用を定着させる</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期の運用サイクルを固定すると、利用は文化として定着する。</div>
+      <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期それぞれのサイクルで型を決めると、利用が文化として根付く。</div>
       <p class="note">実行体制: チームリード主導のもと、各担当リーダーが運用を担う。</p>
 
       <div class="owner-map">
@@ -586,15 +586,15 @@
           <div class="owner-b">
             <div class="owner-r"><strong>オーナー:</strong> チームリード</div>
             <div class="owner-r">15分で課題を共有し、阻害要因を記録する</div>
-            <div class="owner-r">有効なプロンプトは即テンプレート化する</div>
+            <div class="owner-r">有効なプロンプトはその都度テンプレート化する</div>
           </div>
         </div>
         <div class="owner">
           <div class="owner-h">毎月（育てる）</div>
           <div class="owner-b">
             <div class="owner-r"><strong>オーナー:</strong> 各担当リーダー</div>
-            <div class="owner-r">ハンズオンでルールとスキルを更新する</div>
-            <div class="owner-r">新規メンバーは事例起点でオンボーディングする</div>
+            <div class="owner-r">実案件を通じてルールとスキルを更新する</div>
+            <div class="owner-r">新規メンバーは過去事例を起点に業務を始める</div>
           </div>
         </div>
         <div class="owner">
@@ -619,21 +619,21 @@
         <div class="rm">
           <div class="rm-h">初日</div>
           <div class="rm-b">
-            <div class="rm-i"><code>infra-cc-playbook</code> リポジトリを作成</div>
-            <div class="rm-i"><code>CLAUDE.md / rules / skills / cases</code> を初期配置</div>
+            <div class="rm-i"><code>infra-cc-playbook</code> リポジトリを作成する</div>
+            <div class="rm-i"><code>CLAUDE.md / rules / skills / cases</code> を初期配置する</div>
           </div>
         </div>
         <div class="rm">
           <div class="rm-h">1〜2週目</div>
           <div class="rm-b">
-            <div class="rm-i">定型業務10件をCCで実行し、結果を記録</div>
-            <div class="rm-i">週次レビューでルールとスキルを更新</div>
+            <div class="rm-i">定型業務をCCで実行し、結果を記録する</div>
+            <div class="rm-i">週次レビューでルールとスキルを更新する</div>
           </div>
         </div>
         <div class="rm">
           <div class="rm-h">3週目以降</div>
           <div class="rm-b">
-            <div class="rm-i">隣接業務へテンプレートを展開</div>
+            <div class="rm-i">隣接業務へテンプレートを展開する</div>
             <div class="rm-i">内製化対象を毎週1件以上追加する</div>
           </div>
         </div>
