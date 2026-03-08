@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claude Code 活用による外部委託最適化（思考整理メモ）</title>
+  <title>思考の整理メモ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -249,7 +249,7 @@
       font-size: 10px;
       letter-spacing: .04em;
     }
-    .map-fork { display: flex; align-items: flex-start; gap: 4px; }
+    .map-fork { display: flex; align-items: stretch; gap: 4px; }
     .map-fork-right { display: flex; flex-direction: column; gap: 6px; flex: 1; }
 
 
@@ -401,7 +401,7 @@
 </head>
 <body>
   <header class="hdr">
-    <h1>Claude Code 活用による外部委託最適化</h1>
+    <h1>思考の整理メモ</h1>
   </header>
 
   <nav>
@@ -422,6 +422,7 @@
         <span class="sec-num">00</span>
         <h2>はじめに</h2>
       </div>
+      <div class="slide-msg"><strong>この資料の結論:</strong> CCを委託指示の標準経路に組み込み、委託工数を専門・バッファ領域に絞る。</div>
       <div class="plain-lines">
         <p><strong>課題:</strong> 委託工数の適正化が急務。本来の目的（人員不足・専門性の補完）の範囲を超え、生成AIで代替可能な作業まで委託に流れている。</p>
         <p><strong>方針:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替可能な作業は社員+CCを標準経路とし、委託工数を真に必要な領域へ再配置する。</p>
@@ -436,12 +437,6 @@
           <p>ユーザー調整、物理系作業、複雑な障害対応、高度な専門判断が必要な業務、短期ピーク対応。リスクと負荷を吸収する役割に絞る。</p>
         </div>
       </div>
-      <ul class="benefits" style="margin-top:12px;">
-        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
-        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
-        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも速い</span></li>
-        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、次回以降に再利用しやすくなる</span></li>
-      </ul>
     </section>
 
     <section id="s1">
@@ -528,7 +523,7 @@
             <div class="map-row">
               <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
             </div>
-            <div class="map-conn">↓ 整形した指示文で委託リーダーへ依頼</div>
+            <div class="map-conn">↓ 社員が整形した指示文を使って委託リーダーへ依頼</div>
             <div class="map-row">
               <div class="map-card mid">委託リーダー層（L/SL）<small>作業へ展開</small></div>
               <div class="map-arrow">→</div>
@@ -553,7 +548,7 @@
       <div class="grid2">
         <div class="box">
           <div class="box-h box-h-amber">1. 使いどころを整理する</div>
-          <p>定型タスクを棚卸しして、件数・工数・差し戻し回数で評価する。対象を「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
+          <p>定型タスクを棚卸しして、件数・工数・手戻り回数で評価する。対象を「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
         </div>
         <div class="box">
           <div class="box-h box-h-amber">2. 安全に使う土台を整備する</div>
@@ -578,7 +573,7 @@
         <h2>社員側のCC利用を定着させる</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期それぞれのサイクルで型を決めると、利用が文化として根付く。</div>
-      <p class="note">実行体制: チームリード主導のもと、各担当リーダーが運用を担う。</p>
+      <p class="note">実行体制: チームリード・各担当リーダー・マネージャーがそれぞれのサイクルでオーナーを担う。</p>
 
       <div class="owner-map">
         <div class="owner">
@@ -613,7 +608,7 @@
         <span class="sec-num">06</span>
         <h2>最短3週間で立ち上げる</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> 初日に土台を作り、1〜2週間で運用を回し、3週目から横展開する。</div>
+      <div class="slide-msg"><strong>結論:</strong> 初日に土台を作り、1〜2週目で運用を回し、3週目から横展開する。</div>
 
       <div class="roadmap">
         <div class="rm">
@@ -641,6 +636,6 @@
     </section>
   </main>
 
-  <footer>思考整理メモ</footer>
+  <footer>思考の整理メモ</footer>
 </body>
 </html>
