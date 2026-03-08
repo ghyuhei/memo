@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>思考整理メモ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080d16;
+      --card: #121b2b;
+      --border: #1c2b40;
+      --border-hi: #263d5a;
+      --text: #d8e6f7;
+      --text-muted: #90a7c7;
+      --text-dim: #58769a;
+      --amber: #f59e0b;
+      --amber-bg: rgba(245, 158, 11, 0.09);
+      --amber-border: rgba(245, 158, 11, 0.22);
+      --danger: #ef4444;
+      --danger-bg: rgba(239, 68, 68, 0.08);
+      --danger-border: rgba(239, 68, 68, 0.24);
+      --ok: #2dd4bf;
+      --ok-bg: rgba(45, 212, 191, 0.08);
+      --ok-border: rgba(45, 212, 191, 0.24);
+      --r: 6px;
+      --rl: 10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Noto Sans JP", sans-serif;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .hdr {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 48px 32px;
+      background: linear-gradient(140deg, #060c18 0%, #0c1728 60%, #060c18 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .hdr::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    h1 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-family: "Barlow Condensed", "Noto Sans JP", sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8, 13, 22, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 0 48px;
+    }
+    .nav-row {
+      display: flex;
+      min-width: max-content;
+    }
+    nav a {
+      display: block;
+      padding: 13px 14px;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    nav a:hover {
+      color: var(--amber);
+      border-bottom-color: var(--amber);
+    }
+
+    main {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 48px 48px 80px;
+    }
+    section { margin-bottom: 56px; }
+    .sec-hdr {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .sec-num {
+      padding: 2px 8px;
+      border: 1px solid var(--amber-border);
+      border-radius: 3px;
+      background: var(--amber-bg);
+      color: var(--amber);
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      color: var(--text);
+      font-family: "Barlow Condensed", "Noto Sans JP", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    h3 {
+      margin: 26px 0 12px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h3:first-child { margin-top: 0; }
+
+    .slide-msg {
+      margin: -8px 0 14px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .slide-msg strong { color: var(--text); }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .plain-lines {
+      margin: 6px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .plain-lines p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .plain-lines strong { color: var(--amber); }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .box {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      padding: 16px 18px;
+    }
+    .box.k { border-color: var(--danger-border); background: var(--danger-bg); }
+    .box.m { border-color: var(--ok-border); background: var(--ok-bg); }
+    .box-h {
+      margin-bottom: 8px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .box.k .box-h { color: var(--danger); }
+    .box.m .box-h { color: var(--ok); }
+    .box p { margin: 0; }
+    .box-h-ok { color: var(--ok); }
+    .box-h-amber { color: var(--amber); }
+
+
+    .map {
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      padding: 14px 16px;
+    }
+    .map-lbl {
+      margin-bottom: 12px;
+      color: var(--text-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+    .map-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .map-card {
+      padding: 8px 13px;
+      border: 1px solid;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .map-card.emp { border-color: var(--amber-border); background: var(--amber-bg); color: var(--amber); }
+    .map-card.mid { border-color: rgba(100, 116, 139, 0.28); background: rgba(100, 116, 139, 0.1); color: var(--text-muted); }
+    .map-card.v { border-color: var(--border); background: rgba(255, 255, 255, 0.02); color: var(--text-dim); }
+    .map-card.bad { border-color: var(--danger-border); background: var(--danger-bg); color: var(--danger); }
+    .map-card.good { border-color: var(--ok-border); background: var(--ok-bg); color: var(--ok); }
+    .map-card small {
+      display: block;
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 400;
+    }
+    .map-arrow {
+      padding: 0 6px;
+      color: var(--text-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+    }
+
+
+    .benefits {
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .benefits li::before {
+      content: "✓";
+      color: var(--ok);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .benefits span { color: var(--text-muted); font-size: 12px; }
+    .benefits.neg li::before {
+      content: "×";
+      color: var(--danger);
+    }
+
+    .panel {
+      margin-top: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--card);
+      padding: 14px 16px;
+    }
+    .panel h4 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .panel ol {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .panel li {
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .owner-map {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .owner {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .owner-h {
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .owner-b {
+      padding: 10px 11px;
+      background: var(--card);
+    }
+    .owner-r {
+      margin-bottom: 6px;
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .owner-r:last-child { margin-bottom: 0; }
+
+    .roadmap {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .rm {
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow: hidden;
+    }
+    .rm-h {
+      padding: 9px 11px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .rm-b {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 10px 11px;
+      background: var(--card);
+    }
+    .rm-i {
+      color: var(--text-muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0 4px;
+      border-radius: 2px;
+      color: var(--text);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 48px;
+      text-align: center;
+      color: var(--text-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+    }
+
+    @media (max-width: 980px) {
+      .hdr, nav, main, footer { padding-left: 20px; padding-right: 20px; }
+      .grid2, .owner-map, .roadmap { grid-template-columns: 1fr 1fr; }
+      .map-row { align-items: stretch; }
+      .map-arrow { width: 100%; text-align: center; padding: 2px 0; }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 24px; }
+      .grid2, .owner-map, .roadmap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hdr">
+    <h1>思考整理メモ</h1>
+  </header>
+
+  <nav>
+    <div class="nav-row">
+      <a href="#s0">00 はじめに</a>
+      <a href="#s1">01 現状の問題</a>
+      <a href="#s2">02 目標の運用</a>
+      <a href="#s3">03 運用フロー</a>
+      <a href="#s4">04 推進基盤</a>
+      <a href="#s5">05 社員利用の定着</a>
+      <a href="#s6">06 立ち上げ計画</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="s0">
+      <div class="sec-hdr">
+        <span class="sec-num">00</span>
+        <h2>はじめに</h2>
+      </div>
+      <div class="plain-lines">
+        <p><strong>課題:</strong> 委託工数の適正化が必要。委託の使い方が「不足補完」から広がりすぎている。</p>
+        <p><strong>なぜ起きるか:</strong> 本来の委託理由は「社内リソース不足」と「社内にない専門性の補完」。ただ現状は、生成AIで代替可能な作業まで人手委託に流れている。</p>
+        <p><strong>あるべき:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替できる作業は社員+CCを標準経路にし、委託工数を必要領域へ再配置する。</p>
+      </div>
+      <div class="grid2">
+        <div class="box">
+          <div class="box-h box-h-ok">内製へ戻す領域（社員+CC）</div>
+          <p>定型文書作成、一次調査、依頼文整形、レビュー観点整理、事例化に加え、設計・実装も可能な範囲で社員+CCへ移す。</p>
+        </div>
+        <div class="box">
+          <div class="box-h box-h-amber">委託に残す領域</div>
+          <p>ユーザー調整、物理系作業、複雑な障害対応、高度な専門判断が必要な案件、短期ピーク対応。リスクと負荷を吸収する。</p>
+        </div>
+      </div>
+      <ul class="benefits" style="margin-top:12px;">
+        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
+        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
+        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
+        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
+      </ul>
+    </section>
+
+    <section id="s1">
+      <div class="sec-hdr">
+        <span class="sec-num">01</span>
+        <h2>現状の問題（委託の使い方）</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> 問題は委託そのものではなく、委託の使い方。補完領域を超えて委託に流れている。</div>
+
+      <h3>現在の委託運用フロー</h3>
+      <div class="map">
+        <div class="map-lbl">読み方: 左から右へ。1箱 = 主体、2行目 = その主体の主要作業。</div>
+        <div class="map-row">
+          <div class="map-card emp">社員<small>依頼内容を作成・確認</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card bad">委託リーダー層<small>依頼整理・優先度調整で滞留</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card v">委託メンバー<small>実作業を実施</small></div>
+        </div>
+      </div>
+
+      <ul class="benefits neg">
+        <li><strong>補完範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らむ</span></li>
+        <li><strong>品質の変動</strong><span> 人の入れ替わりで成果物の粒度と判断基準が変わりやすい</span></li>
+        <li><strong>管理負荷の増大</strong><span> ジュニア比率が上がり、委託リーダー層の管理・レビュー負荷が増える</span></li>
+        <li><strong>共有コストの増加</strong><span> 委託会社内の情報共有と引き継ぎコストが増え、委託工数が再び膨らむ</span></li>
+      </ul>
+    </section>
+
+    <section id="s2">
+      <div class="sec-hdr">
+        <span class="sec-num">02</span>
+        <h2>目標の運用</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> 委託を減らすのではなく、使い方を変える。主経路を「社員→CC→（必要時のみ）委託」にする。</div>
+
+      <h3>目標経路</h3>
+      <div class="map">
+        <div class="map-lbl">読み方: 左から右へ。</div>
+        <div class="map-row">
+          <div class="map-card bad">現状経路<small>社員 → 委託（依頼と判断が遠い）</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card good">改善経路<small>社員 → CC（依頼標準化・一次対応）</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card emp">併用経路<small>難案件のみ委託へ連携</small></div>
+        </div>
+      </div>
+
+      <p class="note">前提: 週次で事例を蓄積し、「内製へ戻す」と「委託に残す」の境界を更新する。</p>
+
+      <ul class="benefits">
+        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
+        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
+        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
+        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
+      </ul>
+      <p class="note">おまけ（次段階）: 属人化が落ち着いた後に、社員の担当領域を段階的に広げる。</p>
+      <p class="note">CCで全部は置き換えない。ユーザー調整・物理作業・複雑障害対応は委託と共存する。</p>
+    </section>
+
+    <section id="s3">
+      <div class="sec-hdr">
+        <span class="sec-num">03</span>
+        <h2>運用フロー</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> 生成AIで代替可能な作業は社員+CCへ寄せ、委託工数を必要領域へ集中させる。</div>
+
+      <div class="panel">
+        <h4>この運用で起きること</h4>
+        <ol>
+          <li><strong>工数削減:</strong> 生成AIで代替可能な作業を委託依頼から外せる。</li>
+          <li><strong>品質向上:</strong> 人の入れ替わりがあっても、型と基準で品質を維持しやすい。</li>
+          <li><strong>速度向上:</strong> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い。</li>
+          <li><strong>属人化削減:</strong> やり取り・実行結果・修正内容を事例化し、再利用できる。</li>
+        </ol>
+      </div>
+
+      <p class="note">運用フローは判定（機密性・難易度・期限）で2分岐する。</p>
+      <h3>フローA（委託なし）</h3>
+      <div class="map">
+        <div class="map-lbl">社員 → CC → 社員+CC実行 → 完了</div>
+        <div class="map-row">
+          <div class="map-card emp">社員<small>依頼条件を入力</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card good">CC<small>依頼文と観点を整理</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card emp">社員+CC<small>実行して成果物作成</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card good">完了<small>結果を確定</small></div>
+        </div>
+      </div>
+
+      <h3>フローB（委託あり）</h3>
+      <div class="map">
+        <div class="map-lbl">社員 → CC → 委託へ連携 → 委託実行 → 完了</div>
+        <div class="map-row">
+          <div class="map-card emp">社員<small>依頼条件を入力</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card good">CC<small>依頼文と観点を整理</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card bad">委託連携<small>依頼文を引き渡し</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card v">委託実行<small>実行結果を返却</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card good">完了<small>結果を確定</small></div>
+        </div>
+      </div>
+      <p class="note">共通処理: やり取りした内容、実行結果、修正内容を<code>cases/</code>へコンテキストとして残し、ナレッジとして再利用する。</p>
+
+      <ul class="benefits">
+        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
+        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
+        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
+        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
+      </ul>
+    </section>
+
+    <section id="s4">
+      <div class="sec-hdr">
+        <span class="sec-num">04</span>
+        <h2>推進基盤（使いどころ整理 + 安全利用整備）</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> まず対象業務を決める。次に安全ルールを決める。</div>
+
+      <div class="grid2">
+        <div class="box">
+          <div class="box-h box-h-amber">1. 使いどころを整理する</div>
+          <p>定型タスクを棚卸しし、件数・工数・差し戻し回数で評価する。対象は「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
+        </div>
+        <div class="box">
+          <div class="box-h box-h-amber">2. 安全に使う土台を整備する</div>
+          <p><code>CLAUDE.md</code>・<code>rules/</code>・<code>skills/</code>・<code>cases/</code>を共通リポジトリに配置し、機密入力禁止・承認必須条件・禁止操作を明文化する。</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>実務順の進め方</h4>
+        <ol>
+          <li><strong>Step 1:</strong> 最初の2週間で候補業務を収集し、件数・工数・手戻りを記録する。</li>
+          <li><strong>Step 2:</strong> 上位3業務を選定し、CC用テンプレートを作成する。</li>
+          <li><strong>Step 3:</strong> セキュリティルールを定義し、入力禁止情報と承認条件を固定する。</li>
+          <li><strong>Step 4:</strong> 実案件で運用し、毎週ケース追記とルール更新を行う。</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="s5">
+      <div class="sec-hdr">
+        <span class="sec-num">05</span>
+        <h2>社員側のCC利用を定着させる</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期の運用サイクルを固定すると、利用は文化として定着する。</div>
+      <p class="note">実行主体: チームリードが主導し、各担当リーダーが運用を担う。</p>
+
+      <div class="owner-map">
+        <div class="owner">
+          <div class="owner-h">毎週（回す）</div>
+          <div class="owner-b">
+            <div class="owner-r"><strong>オーナー:</strong> チームリード</div>
+            <div class="owner-r">15分で詰まりを共有し、障害要因を記録する</div>
+            <div class="owner-r">有効なプロンプトは即テンプレート化する</div>
+          </div>
+        </div>
+        <div class="owner">
+          <div class="owner-h">毎月（育てる）</div>
+          <div class="owner-b">
+            <div class="owner-r"><strong>オーナー:</strong> 各担当リーダー</div>
+            <div class="owner-r">ハンズオンでルールとスキルを更新する</div>
+            <div class="owner-r">新規メンバーは事例起点でオンボーディングする</div>
+          </div>
+        </div>
+        <div class="owner">
+          <div class="owner-h">四半期（仕組み化）</div>
+          <div class="owner-b">
+            <div class="owner-r"><strong>オーナー:</strong> マネージャー</div>
+            <div class="owner-r">資産化への貢献を評価指標へ反映する</div>
+            <div class="owner-r">再利用率と内製化件数を公開する</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="s6">
+      <div class="sec-hdr">
+        <span class="sec-num">06</span>
+        <h2>最短3週間で立ち上げる</h2>
+      </div>
+      <div class="slide-msg"><strong>結論:</strong> 初日で土台を作り、2週間で運用を回し、3週目から横展開する。</div>
+
+      <div class="roadmap">
+        <div class="rm">
+          <div class="rm-h">初日</div>
+          <div class="rm-b">
+            <div class="rm-i"><code>infra-cc-playbook</code> リポジトリを作成</div>
+            <div class="rm-i"><code>CLAUDE.md / rules / skills / cases</code> を初期配置</div>
+          </div>
+        </div>
+        <div class="rm">
+          <div class="rm-h">1〜2週目</div>
+          <div class="rm-b">
+            <div class="rm-i">定型業務10件をCCで実行し、結果を記録</div>
+            <div class="rm-i">週次レビューでルールとスキルを更新</div>
+          </div>
+        </div>
+        <div class="rm">
+          <div class="rm-h">3週目以降</div>
+          <div class="rm-b">
+            <div class="rm-i">隣接業務へテンプレートを展開</div>
+            <div class="rm-i">内製化対象を毎週1件以上追加する</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>思考整理メモ</footer>
+</body>
+</html>
