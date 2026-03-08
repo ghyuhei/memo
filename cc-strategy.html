@@ -249,8 +249,20 @@
       font-size: 10px;
       letter-spacing: .04em;
     }
-    .map-fork { display: flex; align-items: stretch; gap: 4px; }
-    .map-fork-right { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .map-b-grid {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      align-items: center;
+      gap: 6px 0;
+    }
+    .map-b-grid .map-card.emp {
+      grid-column: 1;
+      grid-row: 1 / 4;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
 
     .benefits {
@@ -422,7 +434,6 @@
         <span class="sec-num">00</span>
         <h2>はじめに</h2>
       </div>
-      <div class="slide-msg"><strong>この資料の結論:</strong> CCを委託指示の標準経路に組み込み、委託工数を専門・バッファ領域に絞る。</div>
       <div class="plain-lines">
         <p><strong>課題:</strong> 委託工数の適正化が急務。本来の目的（人員不足・専門性の補完）の範囲を超え、生成AIで代替可能な作業まで委託に流れている。</p>
         <p><strong>方針:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替可能な作業は社員+CCを標準経路とし、委託工数を真に必要な領域へ再配置する。</p>
@@ -516,21 +527,20 @@
       <h3>フローB（委託あり）</h3>
       <div class="map">
         <div class="map-lbl">委託が必要なケース（高難易度・物理作業・ユーザー調整）</div>
-        <div class="map-fork">
+        <div class="map-b-grid">
           <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
-          <div class="map-arrow">→</div>
-          <div class="map-fork-right">
-            <div class="map-row">
-              <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
-            </div>
-            <div class="map-conn">↓ 社員が整形した指示文を使って委託リーダーへ依頼</div>
-            <div class="map-row">
-              <div class="map-card mid">委託リーダー層（L/SL）<small>作業へ展開</small></div>
-              <div class="map-arrow">→</div>
-              <div class="map-card v">委託メンバー<small>作業を実施し成果物を作成</small></div>
-              <div class="map-arrow">→</div>
-              <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
-            </div>
+          <div class="map-arrow" style="grid-column:2;grid-row:1;">→</div>
+          <div class="map-row" style="grid-column:3;grid-row:1;">
+            <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
+          </div>
+          <div class="map-conn" style="grid-column:2/4;grid-row:2;">↓ 社員が整形した指示文を使って委託リーダーへ依頼</div>
+          <div class="map-arrow" style="grid-column:2;grid-row:3;">→</div>
+          <div class="map-row" style="grid-column:3;grid-row:3;">
+            <div class="map-card mid">委託リーダー層（L/SL）<small>作業へ展開</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card v">委託メンバー<small>作業を実施し成果物を作成</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
           </div>
         </div>
       </div>
