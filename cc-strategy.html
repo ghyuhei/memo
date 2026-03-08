@@ -241,6 +241,14 @@
       font-family: "JetBrains Mono", monospace;
       font-size: 13px;
     }
+    .map-rows { display: flex; flex-direction: column; gap: 6px; }
+    .map-conn {
+      padding: 2px 0 2px 4px;
+      color: var(--text-dim);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: .04em;
+    }
 
 
     .benefits {
@@ -397,7 +405,7 @@
     <div class="nav-row">
       <a href="#s0">00 はじめに</a>
       <a href="#s1">01 現状の問題</a>
-      <a href="#s2">02 目標の運用</a>
+      <a href="#s2">02 目指す運用</a>
       <a href="#s3">03 運用フロー</a>
       <a href="#s4">04 推進基盤</a>
       <a href="#s5">05 社員利用の定着</a>
@@ -412,25 +420,24 @@
         <h2>はじめに</h2>
       </div>
       <div class="plain-lines">
-        <p><strong>課題:</strong> 委託工数の適正化が必要。委託の使い方が「不足補完」から広がりすぎている。</p>
-        <p><strong>なぜ起きるか:</strong> 本来の委託理由は「社内リソース不足」と「社内にない専門性の補完」。ただ現状は、生成AIで代替可能な作業まで人手委託に流れている。</p>
-        <p><strong>あるべき:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替できる作業は社員+CCを標準経路にし、委託工数を必要領域へ再配置する。</p>
+        <p><strong>課題:</strong> 委託工数の適正化が急務。本来の目的（人員不足・専門性の補完）の範囲を超え、生成AIで代替可能な作業まで委託に流れている。</p>
+        <p><strong>方針:</strong> まず「生成AIで代替できるか」を基準に振り分ける。代替可能な作業は社員+CCを標準経路とし、委託工数を本当に必要な領域へ再配置する。</p>
       </div>
       <div class="grid2">
         <div class="box">
           <div class="box-h box-h-ok">内製へ戻す領域（社員+CC）</div>
-          <p>定型文書作成、一次調査、依頼文整形、レビュー観点整理、事例化に加え、設計・実装も可能な範囲で社員+CCへ移す。</p>
+          <p>定型文書作成・一次調査・依頼文整形・レビュー観点整理・事例化など、型化できる業務を社員+CCへ移す。設計・実装も標準化できる範囲で対象に含める。</p>
         </div>
         <div class="box">
           <div class="box-h box-h-amber">委託に残す領域</div>
-          <p>ユーザー調整、物理系作業、複雑な障害対応、高度な専門判断が必要な案件、短期ピーク対応。リスクと負荷を吸収する。</p>
+          <p>ユーザー調整、物理系作業、複雑な障害対応、高度な専門判断が必要な業務、短期ピーク対応。リスクと負荷を吸収する役割に絞る。</p>
         </div>
       </div>
       <ul class="benefits" style="margin-top:12px;">
         <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
         <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
         <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
-        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
+        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、次回以降に再利用する</span></li>
       </ul>
     </section>
 
@@ -439,57 +446,54 @@
         <span class="sec-num">01</span>
         <h2>現状の問題（委託の使い方）</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> 問題は委託そのものではなく、委託の使い方。補完領域を超えて委託に流れている。</div>
+      <div class="slide-msg"><strong>結論:</strong> 問題は委託そのものではなく、委託の使い方にある。本来の補完領域を超えて委託に流れている。</div>
 
-      <h3>現在の委託運用フロー</h3>
+      <h3>現状の運用フロー</h3>
       <div class="map">
-        <div class="map-lbl">読み方: 左から右へ。1箱 = 主体、2行目 = その主体の主要作業。</div>
+        <div class="map-lbl">現状：委託リーダー層で指示が詰まる</div>
         <div class="map-row">
-          <div class="map-card emp">社員<small>依頼内容を作成・確認</small></div>
+          <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card bad">委託リーダー層<small>依頼整理・優先度調整で滞留</small></div>
+          <div class="map-card bad">委託リーダー層（L/SL）<small>依頼整理・優先度調整で滞留</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card v">委託メンバー<small>実作業を実施</small></div>
+          <div class="map-card v">委託メンバー<small>作業を実施</small></div>
         </div>
       </div>
 
       <ul class="benefits neg">
-        <li><strong>補完範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らむ</span></li>
-        <li><strong>品質の変動</strong><span> 人の入れ替わりで成果物の粒度と判断基準が変わりやすい</span></li>
-        <li><strong>管理負荷の増大</strong><span> ジュニア比率が上がり、委託リーダー層の管理・レビュー負荷が増える</span></li>
-        <li><strong>共有コストの増加</strong><span> 委託会社内の情報共有と引き継ぎコストが増え、委託工数が再び膨らむ</span></li>
+        <li><strong>委託範囲の過剰化</strong><span> 生成AIで代替可能な作業まで人手委託に流れ、委託工数が膨らんでいる</span></li>
+        <li><strong>品質の変動</strong><span> 担当者の入れ替わりで成果物の粒度と判断基準が変わりやすい</span></li>
+        <li><strong>管理負荷の増大</strong><span> 説明・レビュー工数が委託リーダー層に集中し、対応が詰まりやすい</span></li>
+        <li><strong>共有コストの増加</strong><span> 委託会社内での情報共有・引き継ぎコストが増大し、対応品質がさらに不安定になる</span></li>
       </ul>
     </section>
 
     <section id="s2">
       <div class="sec-hdr">
         <span class="sec-num">02</span>
-        <h2>目標の運用</h2>
+        <h2>目指す運用</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> 委託を減らすのではなく、使い方を変える。主経路を「社員→CC→（必要時のみ）委託」にする。</div>
 
-      <h3>目標経路</h3>
+      <h3>目標の運用フロー</h3>
       <div class="map">
-        <div class="map-lbl">読み方: 左から右へ。</div>
+        <div class="map-lbl">目標：CCを経由して指示の精度と速度を上げる</div>
         <div class="map-row">
-          <div class="map-card bad">現状経路<small>社員 → 委託（依頼と判断が遠い）</small></div>
+          <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card good">改善経路<small>社員 → CC（依頼標準化・一次対応）</small></div>
+          <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card emp">併用経路<small>難案件のみ委託へ連携</small></div>
+          <div class="map-card mid">委託リーダー層（L/SL）<small>難案件のみ・説明コスト削減</small></div>
+          <div class="map-arrow">→</div>
+          <div class="map-card v">委託メンバー<small>作業を実施</small></div>
         </div>
       </div>
 
       <p class="note">前提: 週次で事例を蓄積し、「内製へ戻す」と「委託に残す」の境界を更新する。</p>
 
-      <ul class="benefits">
-        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
-        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
-        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
-        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
-      </ul>
-      <p class="note">おまけ（次段階）: 属人化が落ち着いた後に、社員の担当領域を段階的に広げる。</p>
-      <p class="note">CCで全部は置き換えない。ユーザー調整・物理作業・複雑障害対応は委託と共存する。</p>
+      <p class="note">工数削減・品質向上・速度向上・属人化削減の4効果を、主経路の変更によって実現する。</p>
+      <p class="note">補足（次フェーズ）: 運用が安定した後、社員の担当領域を段階的に広げる。</p>
+      <p class="note">CCですべてを置き換えるわけではない。ユーザー調整・物理作業・複雑障害対応は、引き続き委託と共存する。</p>
     </section>
 
     <section id="s3">
@@ -499,67 +503,57 @@
       </div>
       <div class="slide-msg"><strong>結論:</strong> 生成AIで代替可能な作業は社員+CCへ寄せ、委託工数を必要領域へ集中させる。</div>
 
-      <div class="panel">
-        <h4>この運用で起きること</h4>
-        <ol>
-          <li><strong>工数削減:</strong> 生成AIで代替可能な作業を委託依頼から外せる。</li>
-          <li><strong>品質向上:</strong> 人の入れ替わりがあっても、型と基準で品質を維持しやすい。</li>
-          <li><strong>速度向上:</strong> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い。</li>
-          <li><strong>属人化削減:</strong> やり取り・実行結果・修正内容を事例化し、再利用できる。</li>
-        </ol>
-      </div>
-
-      <p class="note">運用フローは判定（機密性・難易度・期限）で2分岐する。</p>
+      <p class="note">運用フローは機密性・難易度・作業種別の判断基準で2種類に分かれる。</p>
       <h3>フローA（委託なし）</h3>
       <div class="map">
-        <div class="map-lbl">社員 → CC → 社員+CC実行 → 完了</div>
+        <div class="map-lbl">CCで完結するケース（定型・低リスク）</div>
         <div class="map-row">
-          <div class="map-card emp">社員<small>依頼条件を入力</small></div>
+          <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card good">CC<small>依頼文と観点を整理</small></div>
+          <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card emp">社員+CC<small>実行して成果物作成</small></div>
+          <div class="map-card emp">社員+CC<small>作業を実施し成果物を作成</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card good">完了<small>結果を確定</small></div>
+          <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
         </div>
       </div>
 
       <h3>フローB（委託あり）</h3>
       <div class="map">
-        <div class="map-lbl">社員 → CC → 委託へ連携 → 委託実行 → 完了</div>
-        <div class="map-row">
-          <div class="map-card emp">社員<small>依頼条件を入力</small></div>
-          <div class="map-arrow">→</div>
-          <div class="map-card good">CC<small>依頼文と観点を整理</small></div>
-          <div class="map-arrow">→</div>
-          <div class="map-card bad">委託連携<small>依頼文を引き渡し</small></div>
-          <div class="map-arrow">→</div>
-          <div class="map-card v">委託実行<small>実行結果を返却</small></div>
-          <div class="map-arrow">→</div>
-          <div class="map-card good">完了<small>結果を確定</small></div>
+        <div class="map-lbl">委託が必要なケース（高難易度・物理作業・ユーザー調整）</div>
+        <div class="map-rows">
+          <div class="map-row">
+            <div class="map-card emp">社員<small>要件・条件を伝える</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
+          </div>
+          <div class="map-conn">↓ 整形した指示文を使って、社員が委託へ依頼</div>
+          <div class="map-row">
+            <div class="map-card emp">社員<small>委託リーダー層（L/SL）へ依頼</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card mid">委託リーダー層（L/SL）<small>作業へ展開</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card v">委託メンバー<small>作業を実施し成果物を作成</small></div>
+            <div class="map-arrow">→</div>
+            <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
+          </div>
         </div>
       </div>
-      <p class="note">共通処理: やり取りした内容、実行結果、修正内容を<code>cases/</code>へコンテキストとして残し、ナレッジとして再利用する。</p>
+      <p class="note">共通処理: フローA・B ともに、やり取り・実行結果・修正内容を <code>cases/</code> に記録し、次回以降に再利用する。</p>
 
-      <ul class="benefits">
-        <li><strong>工数削減</strong><span> 生成AIで代替可能な単純作業を委託依頼から外せる</span></li>
-        <li><strong>品質向上</strong><span> 人の入れ替わりがあっても、型と基準で品質を維持しやすい</span></li>
-        <li><strong>速度向上</strong><span> 定型処理はCCのほうが速く、一次対応の立ち上がりも早い</span></li>
-        <li><strong>属人化削減</strong><span> やり取り・実行結果・修正内容を事例化し、再利用可能にする</span></li>
-      </ul>
     </section>
 
     <section id="s4">
       <div class="sec-hdr">
         <span class="sec-num">04</span>
-        <h2>推進基盤（使いどころ整理 + 安全利用整備）</h2>
+        <h2>推進基盤（使いどころの整理・安全利用の整備）</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> まず対象業務を決める。次に安全ルールを決める。</div>
+      <div class="slide-msg"><strong>結論:</strong> 対象業務を選定し、それに合わせた安全ルールを整備する。</div>
 
       <div class="grid2">
         <div class="box">
           <div class="box-h box-h-amber">1. 使いどころを整理する</div>
-          <p>定型タスクを棚卸しし、件数・工数・差し戻し回数で評価する。対象は「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
+          <p>定型タスクを棚卸しし、件数・工数・差し戻し回数で評価する。対象を「文書作成」「一次調査」「レビュー補助」に分類し、効果が高い順に着手する。</p>
         </div>
         <div class="box">
           <div class="box-h box-h-amber">2. 安全に使う土台を整備する</div>
@@ -568,9 +562,9 @@
       </div>
 
       <div class="panel">
-        <h4>実務順の進め方</h4>
+        <h4>実務での進め方</h4>
         <ol>
-          <li><strong>Step 1:</strong> 最初の2週間で候補業務を収集し、件数・工数・手戻りを記録する。</li>
+          <li><strong>Step 1:</strong> 候補業務を棚卸しし、件数・工数・手戻りを記録する（S6のロードマップと並行して進める）。</li>
           <li><strong>Step 2:</strong> 上位3業務を選定し、CC用テンプレートを作成する。</li>
           <li><strong>Step 3:</strong> セキュリティルールを定義し、入力禁止情報と承認条件を固定する。</li>
           <li><strong>Step 4:</strong> 実案件で運用し、毎週ケース追記とルール更新を行う。</li>
@@ -584,14 +578,14 @@
         <h2>社員側のCC利用を定着させる</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期の運用サイクルを固定すると、利用は文化として定着する。</div>
-      <p class="note">実行主体: チームリードが主導し、各担当リーダーが運用を担う。</p>
+      <p class="note">実行体制: チームリード主導のもと、各担当リーダーが運用を担う。</p>
 
       <div class="owner-map">
         <div class="owner">
           <div class="owner-h">毎週（回す）</div>
           <div class="owner-b">
             <div class="owner-r"><strong>オーナー:</strong> チームリード</div>
-            <div class="owner-r">15分で詰まりを共有し、障害要因を記録する</div>
+            <div class="owner-r">15分で課題を共有し、阻害要因を記録する</div>
             <div class="owner-r">有効なプロンプトは即テンプレート化する</div>
           </div>
         </div>
@@ -607,8 +601,8 @@
           <div class="owner-h">四半期（仕組み化）</div>
           <div class="owner-b">
             <div class="owner-r"><strong>オーナー:</strong> マネージャー</div>
-            <div class="owner-r">資産化への貢献を評価指標へ反映する</div>
-            <div class="owner-r">再利用率と内製化件数を公開する</div>
+            <div class="owner-r">資産化への貢献を評価指標に反映する</div>
+            <div class="owner-r">再利用率と内製化件数をチーム内で共有する</div>
           </div>
         </div>
       </div>
@@ -619,7 +613,7 @@
         <span class="sec-num">06</span>
         <h2>最短3週間で立ち上げる</h2>
       </div>
-      <div class="slide-msg"><strong>結論:</strong> 初日で土台を作り、2週間で運用を回し、3週目から横展開する。</div>
+      <div class="slide-msg"><strong>結論:</strong> 初日に土台を作り、1〜2週間で運用を回し、3週目から横展開する。</div>
 
       <div class="roadmap">
         <div class="rm">
