@@ -180,8 +180,6 @@
       background: var(--card);
       padding: 16px 18px;
     }
-    .box.k { border-color: var(--danger-border); background: var(--danger-bg); }
-    .box.m { border-color: var(--ok-border); background: var(--ok-bg); }
     .box-h {
       margin-bottom: 8px;
       font-family: "JetBrains Mono", monospace;
@@ -189,8 +187,6 @@
       font-weight: 700;
       letter-spacing: 0.06em;
     }
-    .box.k .box-h { color: var(--danger); }
-    .box.m .box-h { color: var(--ok); }
     .box p { margin: 0; }
     .box-h-ok { color: var(--ok); }
     .box-h-amber { color: var(--amber); }
@@ -402,7 +398,6 @@
       .grid2, .owner-map, .roadmap { grid-template-columns: 1fr 1fr; }
       .map-row { align-items: stretch; }
       .map-arrow { width: 100%; text-align: center; padding: 2px 0; }
-      .map-fork { flex-direction: column; }
     }
 
     @media (max-width: 640px) {
@@ -421,10 +416,9 @@
       <a href="#s0">00 はじめに</a>
       <a href="#s1">01 現状の問題</a>
       <a href="#s2">02 目指す運用</a>
-      <a href="#s3">03 運用フロー</a>
-      <a href="#s4">04 推進基盤</a>
-      <a href="#s5">05 社員利用の定着</a>
-      <a href="#s6">06 立ち上げ計画</a>
+      <a href="#s3">03 推進基盤</a>
+      <a href="#s4">04 社員利用の定着</a>
+      <a href="#s5">05 立ち上げ計画</a>
     </div>
   </nav>
 
@@ -484,7 +478,7 @@
       </div>
       <div class="slide-msg"><strong>結論:</strong> 委託を減らすのではなく、使い方を変える。主経路を「社員→CC→（必要時のみ）委託」にする。</div>
 
-      <h3>目標の運用フロー</h3>
+      <h3>目標の運用フロー（概要）</h3>
       <div class="map">
         <div class="map-lbl">目標：CCを経由して指示の精度と速度を上げる</div>
         <div class="map-row">
@@ -498,17 +492,7 @@
         </div>
       </div>
 
-      <p class="note">前提: 週次で事例を蓄積し、「内製へ戻す」と「委託に残す」の境界を更新する。</p>
-
-      <p class="note">補足（次フェーズ）: 運用が安定した後、社員の担当領域を段階的に広げる。</p>
-    </section>
-
-    <section id="s3">
-      <div class="sec-hdr">
-        <span class="sec-num">03</span>
-        <h2>運用フロー</h2>
-      </div>
-      <div class="slide-msg"><strong>結論:</strong> フローは2種類。機密性・難易度・作業種別で使い分ける。</div>
+      <p class="note">フローは2種類。機密性・難易度・作業種別で使い分ける。</p>
 
       <h3>フローA（委託なし）</h3>
       <div class="map">
@@ -520,7 +504,7 @@
           <div class="map-arrow">→</div>
           <div class="map-card emp">社員+CC<small>作業を実施し成果物を作成</small></div>
           <div class="map-arrow">→</div>
-          <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
+          <div class="map-card emp">社員<small>内容を確認して完了</small></div>
         </div>
       </div>
 
@@ -533,24 +517,26 @@
           <div class="map-row" style="grid-column:3;grid-row:1;">
             <div class="map-card good">CC<small>指示文と成果基準を整形</small></div>
           </div>
-          <div class="map-conn" style="grid-column:2/4;grid-row:2;">↓ 社員が整形した指示文を使って委託リーダーへ依頼</div>
+          <div class="map-conn" style="grid-column:2/4;grid-row:2;">⇔</div>
           <div class="map-arrow" style="grid-column:2;grid-row:3;">→</div>
           <div class="map-row" style="grid-column:3;grid-row:3;">
             <div class="map-card mid">委託リーダー層（L/SL）<small>作業へ展開</small></div>
             <div class="map-arrow">→</div>
             <div class="map-card v">委託メンバー<small>作業を実施し成果物を作成</small></div>
             <div class="map-arrow">→</div>
-            <div class="map-card good">完了<small>社員が内容を確認して完了</small></div>
+            <div class="map-card emp">社員<small>内容を確認して完了</small></div>
           </div>
         </div>
       </div>
-      <p class="note">共通処理: フローA・Bともに、やり取り・実行結果・修正内容を<code>cases/</code>に記録し、次回以降に再利用する。</p>
 
+      <p class="note">共通処理: フローA・Bともに、やり取り・実行結果・修正内容を<code>cases/</code>に記録し、次回以降に再利用する。</p>
+      <p class="note">前提: 週次で事例を蓄積し、「内製へ戻す」と「委託に残す」の境界を更新する。</p>
+      <p class="note">補足（次フェーズ）: 運用が安定した後、社員の担当領域を段階的に広げる。</p>
     </section>
 
-    <section id="s4">
+    <section id="s3">
       <div class="sec-hdr">
-        <span class="sec-num">04</span>
+        <span class="sec-num">03</span>
         <h2>推進基盤（使いどころの整理・安全利用の整備）</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> ツールより先に、使いどころとルールを固める。</div>
@@ -569,7 +555,7 @@
       <div class="panel">
         <h4>実務での進め方</h4>
         <ol>
-          <li><strong>Step 1:</strong> 候補業務を棚卸しして、件数・工数・手戻りを記録する（セクション06のロードマップと並行して進める）。</li>
+          <li><strong>Step 1:</strong> 候補業務を棚卸しして、件数・工数・手戻りを記録する（セクション05のロードマップと並行して進める）。</li>
           <li><strong>Step 2:</strong> 上位3業務を選定し、CC用テンプレートを作成する。</li>
           <li><strong>Step 3:</strong> 利用ルールを定義し、入力禁止情報と承認条件を固定する。</li>
           <li><strong>Step 4:</strong> 実案件で運用し、毎週ケース追記とルール更新を行う。</li>
@@ -577,13 +563,13 @@
       </div>
     </section>
 
-    <section id="s5">
+    <section id="s4">
       <div class="sec-hdr">
-        <span class="sec-num">05</span>
+        <span class="sec-num">04</span>
         <h2>社員側のCC利用を定着させる</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> 週次・月次・四半期それぞれのサイクルで型を決めると、利用が文化として根付く。</div>
-      <p class="note">実行体制: チームリード・各担当リーダー・マネージャーがそれぞれのサイクルでオーナーを担う。</p>
+      <p class="note">実行体制: チームリード・各担当リーダー・マネージャーがそれぞれのサイクルでオーナーを務める。</p>
 
       <div class="owner-map">
         <div class="owner">
@@ -613,9 +599,9 @@
       </div>
     </section>
 
-    <section id="s6">
+    <section id="s5">
       <div class="sec-hdr">
-        <span class="sec-num">06</span>
+        <span class="sec-num">05</span>
         <h2>最短3週間で立ち上げる</h2>
       </div>
       <div class="slide-msg"><strong>結論:</strong> 初日に土台を作り、1〜2週目で運用を回し、3週目から横展開する。</div>
@@ -639,7 +625,7 @@
           <div class="rm-h">3週目以降</div>
           <div class="rm-b">
             <div class="rm-i">隣接業務へテンプレートを展開する</div>
-            <div class="rm-i">内製化対象を毎週1件以上追加する</div>
+            <div class="rm-i">内製へ戻す対象を毎週1件以上追加する</div>
           </div>
         </div>
       </div>
