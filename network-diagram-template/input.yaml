@@ -1,0 +1,187 @@
+# ============================================================
+# Enterprise Network Diagram — Input Template
+# ============================================================
+#
+# Usage:
+#   1. Copy this file and fill in your environment details
+#   2. Replace all "???" placeholders with actual values
+#   3. Comment out or delete sections that don't apply
+#   4. Ask Claude Code:
+#      "Read PROMPT.md and generate output.drawio from input.yaml"
+#
+# ============================================================
+
+# ------------------------------
+# General Settings
+# ------------------------------
+diagram:
+  title: "???"                  # e.g., "ACME Corp Network Architecture"
+  center: aws                   # aws | azure | alibaba — which env is the hub
+
+# ------------------------------
+# 1. AWS
+# ------------------------------
+aws:
+  regions:
+    - name: "???"               # e.g., "ap-northeast-1"
+      label: "???"              # e.g., "Tokyo"
+      is_primary: true
+    # - name: "???"
+    #   label: "???"
+    #   is_primary: false
+
+  transit_gateway:
+    enabled: true               # true | false
+    attached_vpcs: []           # list of VPC ids, e.g., [production, staging]
+
+  direct_connect_gateway:
+    enabled: true               # true | false
+    connections:
+      - target: "???"           # dc site id, e.g., "dc_tokyo"
+        bandwidth: "???"        # e.g., "1Gbps"
+        redundancy: 2           # number of links
+
+  internet_gateway:
+    enabled: true
+    attached_vpcs: []           # list of VPC ids with internet access
+
+  vpcs:
+    - id: "???"                 # unique id, e.g., "production"
+      name: "???"               # display name, e.g., "Production"
+      cidr: "???"               # e.g., "10.1.0.0/16"
+      subnets:
+        - name: "???"           # e.g., "Public"
+          cidr: "???"           # e.g., "10.1.1.0/24"
+          type: "???"           # public | private | db
+          services:
+            - name: "???"       # e.g., "ALB"
+              category: "???"   # networking | compute | database | storage | security | management
+    # Add more VPCs as needed
+
+  # Services outside any VPC (S3, WAF, CloudFront, IAM, GuardDuty, etc.)
+  regional_services:
+    - name: "???"
+      category: "???"
+
+# ------------------------------
+# 2. Azure (delete section if not used)
+# ------------------------------
+azure:
+  regions:
+    - name: "???"               # e.g., "Japan East"
+      label: "???"
+
+  vnets:
+    - id: "???"
+      name: "???"
+      cidr: "???"               # e.g., "172.16.0.0/16"
+      subnets:
+        - name: "???"
+          cidr: "???"
+          services:
+            - name: "???"
+              category: "???"   # networking | compute | database | storage | security | management
+
+  connection:                   # Connection to the center environment
+    type: "???"                 # peering | vpn | expressroute
+    via: "???"                  # Megaport | Equinix | direct
+    bandwidth: "???"
+
+  # Services outside VNets
+  regional_services:
+    - name: "???"
+      category: "???"
+
+  notes: ""
+
+# ------------------------------
+# 3. Alibaba Cloud (delete section if not used)
+# ------------------------------
+alibaba:
+  regions:
+    - name: "???"               # e.g., "cn-shanghai"
+      label: "???"
+
+  vpcs:
+    - id: "???"
+      name: "???"
+      cidr: "???"               # e.g., "192.168.0.0/16"
+      subnets:
+        - name: "???"           # Alibaba uses "vSwitch" instead of "subnet"
+          cidr: "???"
+          services:
+            - name: "???"
+              category: "???"
+
+  connection:                   # Connection to the center environment
+    type: "???"                 # peering | vpn | cen
+    via: "???"                  # CEN (Cloud Enterprise Network)
+    bandwidth: "???"
+
+  regional_services:
+    - name: "???"
+      category: "???"
+
+  notes: ""                     # e.g., "ICP license required"
+
+# ------------------------------
+# 4. Domestic Data Centers (delete section if not used)
+# ------------------------------
+dc:
+  sites:
+    - id: "???"                 # unique id, e.g., "dc_tokyo"
+      name: "???"               # e.g., "Tokyo"
+      role: "???"               # primary | dr | backup
+      zones:
+        - name: "???"           # e.g., "DMZ", "Internal Network", "Cloud Connect Zone"
+          services:
+            - "???"
+      # connection: optional — delete this block if no direct connection to center
+      connection:
+        type: "???"             # direct_connect | vpn
+        bandwidth: "???"
+        redundancy: 2
+
+  # Connection between DC sites
+  dc_interconnect:
+    type: "???"                 # Private WAN | Dark Fiber | IP-VPN
+    between: []                 # list of dc site ids, e.g., [dc_tokyo, dc_osaka]
+    bandwidth: "???"
+
+# ------------------------------
+# 5. Overseas Subsidiaries (delete section if not used)
+# ------------------------------
+overseas:
+  subsidiaries:
+    - id: "???"                 # unique id, e.g., "us"
+      name: "???"               # display name, e.g., "US"
+      location: "???"           # city/country, e.g., "New York"
+      connection:
+        type: "???"             # vpn | sd-wan | direct_connect
+      services:
+        - "???"
+      notes: ""                 # e.g., "GDPR compliance required"
+
+# ------------------------------
+# 6. Cross-cutting Concerns (optional)
+# ------------------------------
+cross_cutting:
+  dns:
+    strategy: "???"             # cloud_only | on_prem_only | hybrid
+    details: "???"
+
+  authentication:
+    strategy: "???"
+    details: "???"
+
+  monitoring:
+    tools:
+      - "???"
+
+  security:
+    services:
+      - "???"
+
+  compliance:
+    notes:
+      - "???"

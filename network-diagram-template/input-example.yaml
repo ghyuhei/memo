@@ -1,0 +1,305 @@
+# ============================================================
+# Enterprise Network Diagram — Example Input
+# ============================================================
+# This is a filled-in example. Copy input.yaml and fill in
+# your actual values using this as a reference.
+# ============================================================
+
+diagram:
+  title: "ACME Corp Network Architecture"
+  center: aws
+
+aws:
+  regions:
+    - name: "ap-northeast-1"
+      label: "Tokyo"
+      is_primary: true
+
+  transit_gateway:
+    enabled: true
+    attached_vpcs: [production, staging, shared_services]
+
+  direct_connect_gateway:
+    enabled: true
+    connections:
+      - target: "dc_tokyo"
+        bandwidth: "1Gbps"
+        redundancy: 2
+
+  internet_gateway:
+    enabled: true
+    attached_vpcs: [production]
+
+  vpcs:
+    - id: shared_services
+      name: "Shared Services"
+      cidr: "10.0.0.0/16"
+      subnets:
+        - name: "Private"
+          cidr: "10.0.1.0/24"
+          type: private
+          services:
+            - name: "Route 53 Resolver"
+              category: networking
+            - name: "CloudWatch"
+              category: management
+
+    - id: production
+      name: "Production"
+      cidr: "10.1.0.0/16"
+      subnets:
+        - name: "Public"
+          cidr: "10.1.1.0/24"
+          type: public
+          services:
+            - name: "ALB"
+              category: networking
+            - name: "NAT GW"
+              category: networking
+        - name: "Private"
+          cidr: "10.1.2.0/24"
+          type: private
+          services:
+            - name: "ECS / EKS"
+              category: compute
+            - name: "Lambda"
+              category: compute
+            - name: "EC2"
+              category: compute
+        - name: "DB"
+          cidr: "10.1.3.0/24"
+          type: db
+          services:
+            - name: "RDS (Multi-AZ)"
+              category: database
+            - name: "Aurora"
+              category: database
+            - name: "ElastiCache"
+              category: database
+
+    - id: staging
+      name: "Staging"
+      cidr: "10.2.0.0/16"
+      subnets:
+        - name: "Public"
+          cidr: "10.2.1.0/24"
+          type: public
+          services:
+            - name: "ALB"
+              category: networking
+        - name: "Private"
+          cidr: "10.2.2.0/24"
+          type: private
+          services:
+            - name: "ECS"
+              category: compute
+        - name: "DB"
+          cidr: "10.2.3.0/24"
+          type: db
+          services:
+            - name: "RDS"
+              category: database
+
+  regional_services:
+    - name: "S3"
+      category: storage
+    - name: "WAF"
+      category: security
+    - name: "CloudFront"
+      category: networking
+    - name: "IAM Identity Center"
+      category: security
+    - name: "GuardDuty"
+      category: security
+    - name: "DynamoDB"
+      category: database
+
+azure:
+  regions:
+    - name: "Japan East"
+      label: "Japan East"
+
+  vnets:
+    - id: production
+      name: "Production"
+      cidr: "172.16.0.0/16"
+      subnets:
+        - name: "Web"
+          cidr: "172.16.1.0/24"
+          services:
+            - name: "App Service"
+              category: compute
+            - name: "AKS"
+              category: compute
+            - name: "App Gateway / WAF"
+              category: security
+        - name: "DB"
+          cidr: "172.16.2.0/24"
+          services:
+            - name: "SQL Database"
+              category: database
+            - name: "Cosmos DB"
+              category: database
+        - name: "GatewaySubnet"
+          cidr: "172.16.255.0/27"
+          services:
+            - name: "ExpressRoute Gateway"
+              category: networking
+            - name: "VPN Gateway"
+              category: networking
+
+  connection:
+    type: "peering"
+    via: "Megaport"
+    bandwidth: "500Mbps"
+
+  regional_services:
+    - name: "Azure Firewall"
+      category: security
+
+  notes: ""
+
+alibaba:
+  regions:
+    - name: "cn-shanghai"
+      label: "Shanghai"
+
+  vpcs:
+    - id: china_production
+      name: "China Production"
+      cidr: "192.168.0.0/16"
+      subnets:
+        - name: "Web (vSwitch)"
+          cidr: "192.168.1.0/24"
+          services:
+            - name: "ECS"
+              category: compute
+            - name: "SLB"
+              category: networking
+        - name: "DB (vSwitch)"
+          cidr: "192.168.2.0/24"
+          services:
+            - name: "ApsaraDB RDS"
+              category: database
+            - name: "ApsaraDB Redis"
+              category: database
+
+  connection:
+    type: "cen"
+    via: "CEN"
+    bandwidth: "200Mbps"
+
+  regional_services:
+    - name: "OSS"
+      category: storage
+    - name: "Alibaba CDN"
+      category: networking
+    - name: "Cloud Firewall"
+      category: security
+
+  notes: "China region requires ICP license and data sovereignty compliance"
+
+dc:
+  sites:
+    - id: dc_tokyo
+      name: "Tokyo"
+      role: primary
+      zones:
+        - name: "DMZ"
+          services:
+            - "External Firewall"
+            - "Reverse Proxy"
+            - "Mail Gateway"
+            - "VPN Concentrator"
+        - name: "Internal Network"
+          services:
+            - "Active Directory (Primary)"
+            - "DNS Servers (Internal)"
+            - "Legacy Apps (ERP / CRM)"
+            - "File Servers (NAS/SAN)"
+            - "Monitoring (Zabbix)"
+            - "DHCP"
+            - "NTP"
+        - name: "Cloud Connect Zone"
+          services:
+            - "Direct Connect Router (Primary)"
+            - "Direct Connect Router (Secondary)"
+      connection:
+        type: "direct_connect"
+        bandwidth: "1Gbps"
+        redundancy: 2
+
+    - id: dc_osaka
+      name: "Osaka"
+      role: dr
+      zones:
+        - name: "Internal Network"
+          services:
+            - "DR Systems (Standby)"
+            - "Backup Storage (Tape / Disk)"
+            - "Active Directory (Replica)"
+            - "Firewall / WAN Router"
+      # No direct connection — connects via dc_tokyo over Private WAN
+
+  dc_interconnect:
+    type: "Private WAN"
+    between: [dc_tokyo, dc_osaka]
+    bandwidth: "10Gbps"
+
+overseas:
+  subsidiaries:
+    - id: us
+      name: "US"
+      location: "New York"
+      connection:
+        type: "vpn"
+      services:
+        - "VPN Endpoint (Site-to-Site)"
+        - "Local Apps"
+        - "VDI"
+        - "Local LAN / Wi-Fi"
+      notes: ""
+
+    - id: eu
+      name: "EU"
+      location: "Frankfurt"
+      connection:
+        type: "vpn"
+      services:
+        - "VPN Endpoint (Site-to-Site)"
+        - "Local Apps"
+        - "VDI"
+      notes: "GDPR compliance required"
+
+    - id: apac
+      name: "APAC"
+      location: "Singapore"
+      connection:
+        type: "vpn"
+      services:
+        - "VPN Endpoint (Site-to-Site)"
+        - "Local Apps"
+        - "VDI"
+      notes: ""
+
+cross_cutting:
+  dns:
+    strategy: "hybrid"
+    details: "Route 53 Resolver + on-prem DNS forwarding"
+  authentication:
+    strategy: "hybrid"
+    details: "AD on-prem + IAM Identity Center (SSO) federation"
+  monitoring:
+    tools:
+      - "CloudWatch (AWS)"
+      - "Zabbix (on-prem)"
+  security:
+    services:
+      - "WAF (AWS)"
+      - "GuardDuty (AWS)"
+      - "Azure Firewall"
+      - "Cloud Firewall (Alibaba)"
+  compliance:
+    notes:
+      - "GDPR: EU subsidiary data must stay in EU region"
+      - "China: ICP license required, data sovereignty"
