@@ -55,6 +55,20 @@
           </mxCell>
         </UserObject>
 
+        <!-- ===== Overseas EU — clickable ===== -->
+        <UserObject label="&lt;b&gt;Overseas — EU&lt;/b&gt;&lt;br&gt;Local Apps / VDI / VPN&lt;br&gt;&lt;font style=&quot;font-size:10px; color:#DD344C;&quot;&gt;GDPR compliance required&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px; color:#28A745;&quot;&gt;▶ Detail&lt;/font&gt;" link="data:page/id,L2-dc-overseas" id="l1-overseas-eu">
+          <mxCell style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_corporate_data_center;grStroke=1;fillColor=#E8F5E9;strokeColor=#28A745;fontColor=#232F3E;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1200" y="560" width="260" height="130" as="geometry" />
+          </mxCell>
+        </UserObject>
+
+        <!-- ===== Overseas APAC — clickable ===== -->
+        <UserObject label="&lt;b&gt;Overseas — APAC&lt;/b&gt;&lt;br&gt;Local Apps / VDI / VPN&lt;br&gt;&lt;font style=&quot;font-size:10px; color:#28A745;&quot;&gt;▶ Detail&lt;/font&gt;" link="data:page/id,L2-dc-overseas" id="l1-overseas-apac">
+          <mxCell style="shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_corporate_data_center;grStroke=1;fillColor=#E8F5E9;strokeColor=#28A745;fontColor=#232F3E;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1200" y="720" width="260" height="110" as="geometry" />
+          </mxCell>
+        </UserObject>
+
         <!-- ===== Internet Cloud ===== -->
         <mxCell id="l1-internet" value="&lt;b&gt;Internet&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#ADB5BD;fontColor=#666666;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
           <mxGeometry x="700" y="130" width="200" height="80" as="geometry" />
@@ -63,12 +77,12 @@
         <!-- ========== Connections ========== -->
 
         <!-- AWS <-> Azure: Peering / Backbone -->
-        <mxCell id="l1-conn-azure" value="Peering / Backbone&lt;br&gt;(Megaport / Equinix)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#0078D4;strokeWidth=3;fontColor=#0078D4;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.35;entryX=1;entryY=0.5;" edge="1" parent="1" source="l1-aws" target="l1-azure">
+        <mxCell id="l1-conn-azure" value="Peering via Megaport&lt;br&gt;(500Mbps)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#0078D4;strokeWidth=3;fontColor=#0078D4;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.35;entryX=1;entryY=0.5;" edge="1" parent="1" source="l1-aws" target="l1-azure">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
         <!-- AWS <-> Alibaba: Peering / Backbone -->
-        <mxCell id="l1-conn-alibaba" value="Peering / Backbone&lt;br&gt;(CEN + Cross-Cloud)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#FF6A00;strokeWidth=3;fontColor=#FF6A00;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.35;entryX=0;entryY=0.5;" edge="1" parent="1" source="l1-aws" target="l1-alibaba">
+        <mxCell id="l1-conn-alibaba" value="CEN&lt;br&gt;(200Mbps)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;strokeColor=#FF6A00;strokeWidth=3;fontColor=#FF6A00;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.35;entryX=0;entryY=0.5;dashed=0;" edge="1" parent="1" source="l1-aws" target="l1-alibaba">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
@@ -84,6 +98,16 @@
 
         <!-- AWS <-> Overseas US: Transit GW + VPN -->
         <mxCell id="l1-conn-us" value="Transit GW + VPN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.55;entryX=0;entryY=0.5;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="l1-aws" target="l1-overseas-us">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- AWS <-> Overseas EU: Transit GW + VPN -->
+        <mxCell id="l1-conn-eu" value="Transit GW + VPN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.7;entryX=0;entryY=0.5;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="l1-aws" target="l1-overseas-eu">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- AWS <-> Overseas APAC: Transit GW + VPN -->
+        <mxCell id="l1-conn-apac" value="Transit GW + VPN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.85;entryX=0;entryY=0.5;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="l1-aws" target="l1-overseas-apac">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
@@ -139,6 +163,16 @@
         <mxCell id="l1-leg-wan-text" value="Private WAN (DC–DC)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#232F3E;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="570" y="1065" width="200" height="20" as="geometry" />
         </mxCell>
+        <!-- Legend line: CEN -->
+        <mxCell id="l1-leg-cen-line" value="" style="endArrow=none;strokeColor=#FF6A00;strokeWidth=3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="790" y="1000" as="sourcePoint" />
+            <mxPoint x="850" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l1-leg-cen-text" value="CEN (Alibaba Cloud)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#232F3E;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="860" y="990" width="200" height="20" as="geometry" />
+        </mxCell>
         <!-- Legend: color key -->
         <mxCell id="l1-leg-color-title" value="&lt;b&gt;Colors&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontColor=#232F3E;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="820" y="955" width="100" height="25" as="geometry" />
@@ -190,7 +224,7 @@
 
         <!-- ===== AWS Region ===== -->
         <mxCell id="aws-region" value="AWS Region — ap-northeast-1 (Tokyo)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=14;fontStyle=1;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#00A4A6;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;dashed=1;fontColor=#147EBA;" vertex="1" parent="1">
-          <mxGeometry x="350" y="80" width="1450" height="1100" as="geometry" />
+          <mxGeometry x="350" y="80" width="1580" height="1100" as="geometry" />
         </mxCell>
 
         <!-- ===== Internet Gateway ===== -->
@@ -413,7 +447,7 @@
         </mxCell>
 
         <!-- Overseas (stub on right) -->
-        <mxCell id="ext-overseas" value="&lt;b&gt;Overseas (US/New York) →&lt;/b&gt;&lt;br&gt;Transit GW + VPN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#28A745;strokeWidth=2;fontColor=#232F3E;fontSize=11;align=center;" vertex="1" parent="1">
+        <mxCell id="ext-overseas" value="&lt;b&gt;Overseas (US / EU / APAC) →&lt;/b&gt;&lt;br&gt;Transit GW + VPN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#28A745;strokeWidth=2;fontColor=#232F3E;fontSize=11;align=center;" vertex="1" parent="1">
           <mxGeometry x="1870" y="130" width="220" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tgw-to-overseas" value="VPN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=10;dashed=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="tgw" target="ext-overseas">
@@ -757,11 +791,48 @@
           <mxGeometry x="1070" y="250" width="160" height="40" as="geometry" />
         </mxCell>
 
+        <!-- Overseas EU -->
+        <mxCell id="ov-eu" value="EU Subsidiary (Frankfurt)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=13;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="360" width="440" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="eu-vpn" value="VPN Endpoint&lt;br&gt;(Site-to-Site)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="420" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="eu-apps" value="Local Apps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="420" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="eu-vdi" value="VDI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="420" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="eu-gdpr" value="&lt;font style=&quot;font-size:11px; color:#DD344C;&quot;&gt;&lt;i&gt;※ GDPR compliance required&lt;/i&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="490" width="250" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Overseas APAC -->
+        <mxCell id="ov-apac" value="APAC Subsidiary (Singapore)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#28A745;strokeWidth=2;fontColor=#28A745;fontSize=13;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="600" width="440" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="apac-vpn" value="VPN Endpoint&lt;br&gt;(Site-to-Site)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="660" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="apac-apps" value="Local Apps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="660" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="apac-vdi" value="VDI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#28A745;fontColor=#FFFFFF;strokeColor=#28A745;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="660" width="80" height="50" as="geometry" />
+        </mxCell>
+
         <!-- Overseas -> AWS stubs -->
         <mxCell id="ov-to-aws" value="&lt;b&gt;→ AWS (Transit GW + VPN)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8EF;strokeColor=#FF9900;strokeWidth=2;fontColor=#232F3E;fontSize=11;align=center;" vertex="1" parent="1">
           <mxGeometry x="1540" y="120" width="250" height="40" as="geometry" />
         </mxCell>
         <mxCell id="us-to-aws-line" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#28A745;strokeWidth=2;dashed=1;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="ov-us" target="ov-to-aws">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eu-to-aws-line" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#28A745;strokeWidth=2;dashed=1;exitX=1;exitY=0.3;entryX=0;entryY=1;" edge="1" parent="1" source="ov-eu" target="ov-to-aws">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="apac-to-aws-line" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#28A745;strokeWidth=2;dashed=1;exitX=1;exitY=0.3;entryX=1;entryY=1;" edge="1" parent="1" source="ov-apac" target="ov-to-aws">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
 
@@ -784,11 +855,23 @@
         <mxCell id="dc-leg4" value="&lt;font color=&quot;#28A745&quot;&gt;■&lt;/font&gt; Overseas Subsidiary Components" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
           <mxGeometry x="340" y="1500" width="280" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="dc-leg5" value="&lt;font color=&quot;#6C757D&quot;&gt;━&lt;/font&gt; Private WAN" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="340" y="1520" width="180" height="20" as="geometry" />
+        <mxCell id="dc-leg5-line" value="" style="endArrow=none;strokeColor=#6C757D;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="1530" as="sourcePoint" />
+            <mxPoint x="410" y="1530" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="dc-leg6" value="&lt;font color=&quot;#28A745&quot;&gt;- - -&lt;/font&gt; VPN" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="340" y="1540" width="180" height="20" as="geometry" />
+        <mxCell id="dc-leg5" value="Private WAN" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1520" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-leg6-line" value="" style="endArrow=none;dashed=1;strokeColor=#28A745;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="350" y="1550" as="sourcePoint" />
+            <mxPoint x="410" y="1550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="dc-leg6" value="VPN (Site-to-Site)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1540" width="140" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
